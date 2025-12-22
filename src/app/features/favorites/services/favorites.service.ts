@@ -7,7 +7,7 @@ const STORAGE_KEY = 'favorite_photo_ids_v1';
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {
 
-    private storage = inject(LocalStorageService);
+    private readonly storage = inject(LocalStorageService);
 
     private readonly ids$ = new BehaviorSubject<Set<number>>(
         new Set(this.storage.get<number[]>(STORAGE_KEY, []))

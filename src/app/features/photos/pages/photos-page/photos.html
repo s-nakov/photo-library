@@ -1,0 +1,11 @@
+<section class="page" #scrollHost>
+    <app-photo-grid [photos]="photos()" [loading]="loading()" />
+
+    <div appInfiniteScroll [appInfiniteScrollEnabled]="hasMore() && !loading()" [appInfiniteScrollRoot]="scrollHost"
+        appInfiniteScrollRootMargin="0px 0px 100px 0px" (appInfiniteScroll)="loadMore()" style="height: 1px;"></div>
+
+    @if(photos().length === 0 && !loading()) {
+    <app-empty-state text="No photos found" subtext="Try again later." icon="image_not_supported">
+    </app-empty-state>
+    }
+</section>

@@ -1,0 +1,11 @@
+<div class="grid">
+    @for(photo of photos(); track photo.id) {
+    <app-photo-card [photo]="photo" />
+    }
+</div>
+
+@if(loading()) {
+<div class="grid-footer">
+    <app-spinner />
+</div>
+}

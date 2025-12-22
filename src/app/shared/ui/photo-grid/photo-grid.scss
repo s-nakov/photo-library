@@ -1,0 +1,31 @@
+@use '../../../../styles/breakpoints' as bp;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (min-width: bp.$bp-sm) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: bp.$bp-md) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: bp.$bp-lg) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.grid-footer {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}

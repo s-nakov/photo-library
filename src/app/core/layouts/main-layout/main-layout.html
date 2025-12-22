@@ -1,9 +1,13 @@
-@if(tabPanel) {
-<app-header [tabPanel]="tabPanel"></app-header>
-}
+<div class="main-layout-container">
+    <div class="header-container">
+        @if(tabPanel) {
+        <app-header [tabPanel]="tabPanel"></app-header>
+        }
+    </div>
 
-<main>
-    <mat-tab-nav-panel #tabPanel>
-        <router-outlet></router-outlet>
-    </mat-tab-nav-panel>
-</main>
+    <main class="main-content">
+        <mat-tab-nav-panel #tabPanel>
+            <router-outlet></router-outlet>
+        </mat-tab-nav-panel>
+    </main>
+</div>

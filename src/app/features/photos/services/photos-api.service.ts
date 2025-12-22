@@ -5,7 +5,7 @@ import { Photo } from '../models/photo.model';
 @Injectable({ providedIn: 'root' })
 export class PhotosApiService {
     // total photos available in our "backend"
-    private readonly maxPhotos = 250;
+    private readonly maxPhotos = 50;
 
     private readonly width = 200;
     private readonly height = 300;

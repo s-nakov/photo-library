@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.main-layout-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: min-content auto;
+  row-gap: 1rem;
+
+  .header-container {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .main-content {
+    grid-row: 2;
+    grid-column: 1;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+}
