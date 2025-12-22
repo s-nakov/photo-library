@@ -8,8 +8,8 @@ export const routes: Routes = [
         path: '',
         component: MainLayout,
         children: [
-            { path: '', pathMatch: 'full', component: Photos },
-            { path: 'favorites', component: Favorites },
+            { path: '', pathMatch: 'full', component: Photos, title: 'Photos' },
+            { path: 'favorites', component: Favorites, title: 'Favorites' },
         ],
     },
 
