@@ -1,0 +1,42 @@
+@use './palette' as p;
+@use './typography' as t;
+@use "./material-theme" as theme;
+
+@include theme.apply-material-theme();
+
+:root {
+  /* Layout */
+  --container-max: 1120px;
+  --container-pad: 16px;
+
+  /* Breakpoints */
+  --bp-sm: 600px;
+  --bp-md: 960px;
+  --bp-lg: 1120px;
+
+  /* Typography */
+  --font-base: #{t.$font-base};
+
+  /* Colors */
+  --bg: #{p.$color-bg};
+  --surface: #{p.$color-surface};
+  --text: #{p.$color-text};
+  --text-muted: #{p.$color-muted};
+  --border: #{p.$color-border};
+  --primary: #{p.$color-primary};
+  --primary-hover: #{p.$color-primary-hover};
+  --accent: #{p.$color-accent};
+  --warn: #{p.$color-warn};
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  /* Radius + shadow */
+  --radius: 14px;
+  --shadow-1: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
