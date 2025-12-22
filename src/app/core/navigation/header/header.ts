@@ -19,7 +19,7 @@ interface Link {
 export class Header {
   tabPanel = input.required<MatTabNavPanel>();
 
-  links = <Array<Link>>[
+  links = <Link[]>[
     { label: 'Photos', path: '/', routerLinkActiveOptions: { exact: true } },
     { label: 'Favorites', path: '/favorites', routerLinkActiveOptions: { exact: false } }
   ];
