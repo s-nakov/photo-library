@@ -1,3 +1,17 @@
 @use './styles/tokens';
 @use './styles/base';
 @use './styles/layout';
+
+.toast {
+  --mat-snack-bar-container-shape: 12px !important;
+}
+
+.toast--success {
+  --mat-snack-bar-container-color: var(--accent);
+  --mat-snack-bar-supporting-text-color: #fff;
+}
+
+.toast--error {
+  --mat-snack-bar-container-color: var(--warn);
+  --mat-snack-bar-supporting-text-color: #fff;
+}

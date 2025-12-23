@@ -7,6 +7,7 @@ import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PHOTO_CARD_ACTIONS, PhotoCardActions } from '../../../../shared/ui/photo-card/photo-card.actions';
 import { FavoritesService } from '../../../favorites/services/favorites.service';
+import { ToastService } from '../../../../core/notifications/toast.service';
 
 @Component({
   selector: 'app-photos',
@@ -24,6 +25,7 @@ export class Photos implements OnInit, PhotoCardActions {
   private injector = inject(Injector);
   private readonly photosApiService = inject(PhotosApiService);
   private readonly favoritesService = inject(FavoritesService);
+  private readonly toast = inject(ToastService);
   private destroyRef = inject(DestroyRef);
 
   private readonly pageSize = 20;
@@ -66,7 +68,7 @@ export class Photos implements OnInit, PhotoCardActions {
         this.photos.update(prev => [...prev, ...items]);
       },
       error: () => {
-
+        this.toast.error('Something went wrong...');
       },
       complete: () => {
         this.loading.set(false);
@@ -75,8 +77,12 @@ export class Photos implements OnInit, PhotoCardActions {
   }
 
   photoClicked(photoId: number): void {
-    if (this.favoritesService.isFavorite(photoId)) return;
+    if (this.favoritesService.isFavorite(photoId)) {
+      this.toast.error('Photo is already added to favorites!');
+      return;
+    }
 
     this.favoritesService.add(photoId);
+    this.toast.success('Photo added to favorites');
   }
 }

@@ -8,6 +8,7 @@ import { EmptyState } from "../../../../shared/ui/empty-state/empty-state";
 import { PhotoCard } from "../../../../shared/ui/photo-card/photo-card";
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../core/notifications/toast.service';
 
 @Component({
   selector: 'app-photo-details',
@@ -22,6 +23,7 @@ export class PhotoDetails implements OnInit {
   private readonly favoritesService = inject(FavoritesService);
   private readonly router = inject(Router);
   private destroyRef = inject(DestroyRef);
+  private readonly toast = inject(ToastService);
 
   readonly photo = signal<Photo | null>(null);
   readonly loading = signal<boolean>(false);
@@ -46,7 +48,7 @@ export class PhotoDetails implements OnInit {
         this.photo.set(photo)
       },
       error: () => {
-
+        this.toast.error('Something went wrong...');
       },
       complete: () => {
         this.loading.set(false);
@@ -59,7 +61,10 @@ export class PhotoDetails implements OnInit {
   handleRemoveFromFavorites(): void {
     const photoId = this.photo()?.id;
 
-    if (!photoId) return;
+    if (!photoId) {
+      this.toast.error('Something went wrong...');
+      return;
+    }
 
     this.favoritesService.remove(photoId);
     this.router.navigateByUrl('/favorites');
