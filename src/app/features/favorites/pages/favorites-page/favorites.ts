@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnIni
 import { FavoritesService } from '../../services/favorites.service';
 import { PhotosApiService } from '../../../photos/services/photos-api.service';
 import { Photo } from '../../../photos/models/photo.model';
-import { map, of, switchMap, tap } from 'rxjs';
+import { map, of, switchMap } from 'rxjs';
 import { PhotoGrid } from "../../../../shared/ui/photo-grid/photo-grid";
 import { EmptyState } from "../../../../shared/ui/empty-state/empty-state";
 import { PHOTO_CARD_ACTIONS, PhotoCardActions } from '../../../../shared/ui/photo-card/photo-card.actions';

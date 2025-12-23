@@ -25,7 +25,6 @@ export class ScrollRestoreDirective implements OnInit {
                 takeUntilDestroyed(this.destroyRef)
             )
             .subscribe(() => {
-                // Only restore when THIS route is active
                 const key = this.key();
                 if (this.router.url !== key) return;
 
