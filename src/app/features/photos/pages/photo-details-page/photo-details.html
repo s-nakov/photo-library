@@ -1,1 +1,25 @@
-<p>photo-details works!</p>
+<section class="page">
+
+    @if(isEmpty()) {
+    <app-empty-state text="Photo cannot be found" subtext="Try again later." icon="image_not_supported">
+    </app-empty-state>
+    }
+
+    @if(loading()) {
+    <div class="spinner-container">
+        <app-spinner />
+    </div>
+    }
+
+    @if (photo(); as p) {
+    <div class="wrapper">
+        <div class="photo-container">
+            <app-photo-card class="photo-card" [photo]="p" />
+        </div>
+        <div class="remove-from-fav-button-container">
+            <button matButton="filled" color="primary" (click)="handleRemoveFromFavorites()">Remove from
+                favorites</button>
+        </div>
+    </div>
+    }
+</section>

@@ -1,1 +1,8 @@
-<p>favorites works!</p>
+<section class="page">
+    <app-photo-grid [photos]="favorites()" [loading]="loading()" />
+
+    @if(isEmpty()) {
+    <app-empty-state text="No favorites found" subtext="Please add some photos into favorites to see them here" icon="favorite">
+    </app-empty-state>
+    }
+</section>

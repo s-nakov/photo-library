@@ -1,19 +1,30 @@
-import { Component, computed, effect, inject, Injector, OnInit, signal, untracked } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, Injector, OnInit, signal, untracked } from '@angular/core';
 import { Photo } from '../../models/photo.model';
 import { PhotosApiService } from '../../services/photos-api.service';
 import { PhotoGrid } from "../../../../shared/ui/photo-grid/photo-grid";
 import { EmptyState } from '../../../../shared/ui/empty-state/empty-state';
 import { InfiniteScrollDirective } from '../../../../shared/directives/infinite-scroll.directive';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PHOTO_CARD_ACTIONS, PhotoCardActions } from '../../../../shared/ui/photo-card/photo-card.actions';
+import { FavoritesService } from '../../../favorites/services/favorites.service';
 
 @Component({
   selector: 'app-photos',
   imports: [PhotoGrid, EmptyState, InfiniteScrollDirective],
   templateUrl: './photos.html',
   styleUrl: './photos.scss',
+  providers: [
+    {
+      provide: PHOTO_CARD_ACTIONS,
+      useExisting: Photos,
+    },
+  ],
 })
-export class Photos implements OnInit {
+export class Photos implements OnInit, PhotoCardActions {
   private injector = inject(Injector);
-  private readonly photosApi = inject(PhotosApiService);
+  private readonly photosApiService = inject(PhotosApiService);
+  private readonly favoritesService = inject(FavoritesService);
+  private destroyRef = inject(DestroyRef);
 
   private readonly pageSize = 20;
   readonly page = signal(1);
@@ -36,17 +47,17 @@ export class Photos implements OnInit {
     }, { injector: this.injector });
   }
 
-  async loadMore(): Promise<void> {
+  loadMore(): void {
     if (this.loading() || !this.hasMore()) return;
     this.page.update(p => p + 1);
   }
 
-  private async loadPage(page: number): Promise<void> {
+  private loadPage(page: number): void {
     if (this.loading() || !this.hasMore()) return;
 
     this.loading.set(true);
 
-    this.photosApi.getPhotos(page, this.pageSize).subscribe({
+    this.photosApiService.getPhotos(page, this.pageSize).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (items) => {
         if (items.length === 0) {
           this._hasMore.set(false);
@@ -61,5 +72,11 @@ export class Photos implements OnInit {
         this.loading.set(false);
       },
     });
+  }
+
+  photoClicked(photoId: number): void {
+    if (this.favoritesService.isFavorite(photoId)) return;
+
+    this.favoritesService.add(photoId);
   }
 }
