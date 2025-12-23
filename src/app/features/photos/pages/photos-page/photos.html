@@ -1,4 +1,4 @@
-<section class="page" #scrollHost>
+<section class="page" #scrollHost appScrollRestore>
     <app-photo-grid [photos]="photos()" [loading]="loading()" />
 
     <div appInfiniteScroll [appInfiniteScrollEnabled]="hasMore() && !loading()" [appInfiniteScrollRoot]="scrollHost"

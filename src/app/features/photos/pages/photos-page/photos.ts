@@ -8,10 +8,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PHOTO_CARD_ACTIONS, PhotoCardActions } from '../../../../shared/ui/photo-card/photo-card.actions';
 import { FavoritesService } from '../../../favorites/services/favorites.service';
 import { ToastService } from '../../../../core/notifications/toast.service';
+import { ScrollRestoreDirective } from '../../../../shared/directives/scroll-restore.directive';
 
 @Component({
   selector: 'app-photos',
-  imports: [PhotoGrid, EmptyState, InfiniteScrollDirective],
+  imports: [PhotoGrid, EmptyState, InfiniteScrollDirective, ScrollRestoreDirective],
   templateUrl: './photos.html',
   styleUrl: './photos.scss',
   providers: [

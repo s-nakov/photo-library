@@ -1,4 +1,4 @@
-<section class="page">
+<section class="page" appScrollRestore>
     <app-photo-grid [photos]="favorites()" [loading]="loading()" />
 
     @if(isEmpty()) {
