@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Photo } from '../../../features/photos/models/photo.model';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,7 @@ import { PHOTO_CARD_ACTIONS } from './photo-card.actions';
   imports: [CommonModule, MatCardModule],
   templateUrl: './photo-card.html',
   styleUrl: './photo-card.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoCard {
   readonly photo = input.required<Photo>();

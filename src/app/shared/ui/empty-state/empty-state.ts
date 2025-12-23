@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, MatIconModule],
   templateUrl: './empty-state.html',
   styleUrl: './empty-state.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmptyState {
   readonly text = input.required<string>();

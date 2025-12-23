@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
 import { PhotosApiService } from '../../../photos/services/photos-api.service';
 import { Photo } from '../../../photos/models/photo.model';
@@ -22,6 +22,7 @@ import { ScrollRestoreDirective } from '../../../../shared/directives/scroll-res
       useExisting: Favorites,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Favorites implements OnInit, PhotoCardActions {
   private readonly favoritesService = inject(FavoritesService);

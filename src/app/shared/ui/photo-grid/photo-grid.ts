@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Photo } from '../../../features/photos/models/photo.model';
 import { PhotoCard } from '../photo-card/photo-card';
 import { Spinner } from '../spinner/spinner';
@@ -8,6 +8,7 @@ import { Spinner } from '../spinner/spinner';
   imports: [PhotoCard, Spinner],
   templateUrl: './photo-grid.html',
   styleUrl: './photo-grid.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoGrid {
   readonly photos = input.required<Photo[]>();

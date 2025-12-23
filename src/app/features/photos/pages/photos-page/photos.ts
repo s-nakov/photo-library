@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, effect, inject, Injector, OnInit, signal, untracked } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, Injector, OnInit, signal, untracked } from '@angular/core';
 import { Photo } from '../../models/photo.model';
 import { PhotosApiService } from '../../services/photos-api.service';
 import { PhotoGrid } from "../../../../shared/ui/photo-grid/photo-grid";
@@ -21,6 +21,7 @@ import { ScrollRestoreDirective } from '../../../../shared/directives/scroll-res
       useExisting: Photos,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Photos implements OnInit, PhotoCardActions {
   private injector = inject(Injector);

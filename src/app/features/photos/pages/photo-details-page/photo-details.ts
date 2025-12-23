@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { Photo } from '../../models/photo.model';
 import { PhotosApiService } from '../../services/photos-api.service';
 import { FavoritesService } from '../../../favorites/services/favorites.service';
@@ -15,6 +15,7 @@ import { ToastService } from '../../../../core/notifications/toast.service';
   imports: [Spinner, EmptyState, PhotoCard, MatButtonModule],
   templateUrl: './photo-details.html',
   styleUrl: './photo-details.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PhotoDetails implements OnInit {
   readonly id = input.required<string>();
